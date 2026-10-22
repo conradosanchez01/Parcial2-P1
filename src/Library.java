@@ -11,13 +11,14 @@ public class Library {
     public LinkedList<Book> getBooks() { return books; }
 
     // Gestión de libros: Agregar
-    public void addBook(Book book) {
-        if (book != null) {
+    public void addBook(Book book) 
+    {// Verifica si el libro no existe o si ya existe en la LinkedList antes de agregarlo
+        if (book != null && !books.contains(book)) {
             books.add(book);
         }
     }
 
-    // Gestión de libros: Eliminar (faltaba en tu código y lo pide el PDF)
+    // Gestión de libros: Eliminar (faltaba en el código y lo pide el PDF)
     public boolean removeBook(Book book) {
         return books.remove(book);
     }
@@ -164,6 +165,32 @@ public class Library {
         }
         return null;
     }
+
+
+    //Elimina todos los libros del catálogo de la biblioteca 
+    public void clearCatalog() {
+    books.clear(); 
+    }
+
+    
+// Vaciar la cola de espera de un libro por ISBN
+    public void clearBookWaitList(String isbn) {
+        Book book = findBookByIsbn(isbn);
+        if (book != null) {
+            book.clearWaitList();
+        }
+    }
+
+    // Vaciar la pila de préstamos de un libro por ISBN
+    public void clearBookLoanHistory(String isbn) {
+        Book book = findBookByIsbn(isbn);
+        if (book != null) {
+            book.clearLoanHistory();
+        }
+    }
+
+ 
+
 
     @Override
     public String toString() {

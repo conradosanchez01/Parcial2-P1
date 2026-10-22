@@ -21,7 +21,7 @@ public class LinkedList<T> {
     public void add(T data) {
         if (data == null) return;
         Node<T> nuevo = new Node<>(data);
-        
+
         if (head == null) {
             head = nuevo;
         } else {
@@ -38,15 +38,15 @@ public class LinkedList<T> {
     public T get(int index) {
         if (index < 0 || index >= size) {
             return null; // Caso límite: índice fuera de rango
+        } 
+        Node<T> aux = head; // Siempre arranca parado en el primer nodo (head)
+        for (int i = 0; i < index; i++) { // Da tantos saltos como indique 'index'
+            aux = aux.next; //cuenta los saltos hasta llegar al índice deseado
         }
-        Node<T> aux = head;
-        for (int i = 0; i < index; i++) {
-            aux = aux.next;
-        }
-        return aux.data;
+        return aux.data; // Devuelve el libro guardado en el nodo donde frenó
     }
 
-    // Buscar elemento: verifica existencia
+    // Buscar elemento: verifica existencia. 
     public boolean contains(T data) {
         if (data == null) return false;
         Node<T> aux = head;

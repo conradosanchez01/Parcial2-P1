@@ -103,6 +103,23 @@ public class Book {
         return null;
     }
 
+    // Vaciar la cola de espera de este libro
+    public void clearWaitList() {
+        waitingQueue.clear();
+    }
+
+    // Vaciar el historial de préstamos (pila) de este libro
+    public void clearLoanHistory() {
+        loanHistory.clear();
+    }
+    
+
+
+
+
+
+
+
     @Override
     public String toString() {
         return "[" + title + " | ISBN: " + isbn + " | Autor: " + author + " | Año: "
@@ -110,4 +127,17 @@ public class Book {
                 + " | Prestado: " + timesLoaned + " veces"
                 + " | En espera: " + waitingQueue.size() + "]";
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

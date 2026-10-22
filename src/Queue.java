@@ -47,4 +47,17 @@ public class Queue<T> {
         if (isEmpty()) return null;
         return front.data;
     }
+
+    // Vaciar toda la cola
+    public void clear() {
+        front = null;
+        rear = null;
+        size = 0;
+    }
+
+
+
+
+
+
 }

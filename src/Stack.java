@@ -38,4 +38,20 @@ public class Stack<T> {
         if (isEmpty()) return null;
         return top.data;
     }
+
+    // Vaciar toda la pila
+    public void clear() {
+        top = null;
+        size = 0;
+    }
+
+
+
+
+
+
+
+
+
+
 }

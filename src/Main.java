@@ -12,6 +12,8 @@ public class Main {
         library.addBook(b2);
         library.addBook(b3);
         library.addBook(b4);
+         library.addBook(b4); // Intento de agregar un libro duplicado (no debería agregarse)
+
 
         System.out.println(library);
         System.out.println("\n--- LIBROS DISPONIBLES INICIALMENTE ---");
@@ -21,7 +23,9 @@ public class Main {
         }
 
 
-         System.out.println("\n--- LIBROS prestados INICIALMENTE ---");
+       
+
+        System.out.println("\n--- LIBROS prestados INICIALMENTE ---");
         LinkedList<Book> prestados = library.getLoanedBooks();
         for (int i = 0; i < prestados.size(); i++) {
             System.out.println(" - " + prestados.get(i));
@@ -98,6 +102,39 @@ public class Main {
         library.lendBookToUser(isbnQuijote, "Lucía");
         System.out.println("Nuevo último préstamo registrado: "
                 + library.getLastLoanForBook(isbnQuijote));
+
+
+
+
+// 6. Prueba de eliminar un libro específico (remove de LinkedList)
+        System.out.println("\n--- PRUEBA DE ELIMINAR LIBRO (REMOVE EN LINKEDLIST) ---");
+        System.out.println("Cantidad de libros antes de eliminar: " + library.getBooks().size());
+
+        // 7. Prueba de vaciar estructuras con clear() Queue, Stack
+
+        System.out.println("\n--- PRUEBA DE VACIAR ESTRUCTURAS (CLEAR) ---");
+
+        // A) Vaciar la Cola de espera (Queue) del libro '1984'
+        library.clearBookWaitList("978-84-376-0496-1");
+        System.out.println("Primer usuario en espera para '1984' tras clear(): "
+                + library.getNextWaitingUserForBook("978-84-376-0496-1")); // Muestra null
+
+
+        // B) Vaciar la Pila de préstamos (Stack) de 'El Quijote'
+        library.clearBookLoanHistory("978-84-376-0494-7");
+        System.out.println("Último préstamo de 'El Quijote' tras clear(): "
+                + library.getLastLoanForBook("978-84-376-0494-7")); // Muestra null
+        
+
+      // C) Vaciar toda la Lista Enlazada (LinkedList) del catálogo de la biblioteca
+         library.clearCatalog();
+        System.out.println("Total de libros en catálogo tras clearCatalog(): "
+                + library.getBooks().size()); // Muestra 0
+    
+
+
+
+
 
 
 
