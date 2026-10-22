@@ -133,6 +133,38 @@ public class Library {
         return null;
     }
 
+
+
+
+    // --- OPERACIONES DE TAREA N°2 DESDE LA BIBLIOTECA ---
+
+    // 1. Prestar libro registrando el usuario en la pila
+    public boolean lendBookToUser(String isbn, String userName) {
+        Book book = findBookByIsbn(isbn);
+        if (book != null) {
+            return book.lend(userName);
+        }
+        return false;
+    }
+
+    // 2. Ver el último préstamo de un libro
+    public String getLastLoanForBook(String isbn) {
+        Book book = findBookByIsbn(isbn);
+        if (book != null) {
+            return book.getLastLoanUser();
+        }
+        return null;
+    }
+
+    // 3. Deshacer el último préstamo de un libro por error
+    public String undoLastBookLoan(String isbn) {
+        Book book = findBookByIsbn(isbn);
+        if (book != null) {
+            return book.undoLastLoan();
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         return "Biblioteca: " + name + " (" + books.size() + " libros registrados)";

@@ -44,14 +44,14 @@ public class Main {
         // 3. Simulación de préstamos
         System.out.println("\n--- PRESTANDO LIBROS POR ISBN ---");
         Book prestamo1 = library.findBookByIsbn("978-84-376-0496-1"); // 1984
-        if (prestamo1 != null && prestamo1.lend()) {
+        if (prestamo1 != null && prestamo1.lend("Miguelito")) {
             System.out.println("Se prestó exitosamente: " + prestamo1.getTitle());
         }
 
 
         // 4. Prueba de Tarea N°3: Cola de espera sobre un libro prestado ("1984")
         System.out.println("\n--- TAREA 3: COLA DE ESPERA PARA EL LIBRO '1984' ---");
-        library.addUserToBookWaitList("978-84-376-0496-", "Ana");
+        library.addUserToBookWaitList("978-84-376-0496-1", "Ana");
         library.addUserToBookWaitList("978-84-376-0496-1", "Juan");
         library.addUserToBookWaitList("978-84-376-0496-1", "Pedro");
 
@@ -69,5 +69,41 @@ public class Main {
 
         // 5. Estadísticas finales
         System.out.println("\n" + library.getStatistics());
+
+
+
+
+        // Prueba de Tarea N°2: Pila de préstamos y opción de deshacer (Undo)
+        System.out.println("\n--- TAREA 2: HISTORIAL Y DESHACER PRÉSTAMO (STACK) ---");
+        String isbnQuijote = "978-84-376-0494-7";
+
+        // 1. Registrar préstamo (por error se lo prestamos a "Carlos" en vez de "Lucía")
+        if (library.lendBookToUser(isbnQuijote, "Carlos (Usuario Equivocado)")) {
+            System.out.println("Se registró préstamo de 'El Quijote'.");
+        }
+
+        // 2. Ver el último préstamo
+        System.out.println("Último préstamo registrado en 'El Quijote': "
+                + library.getLastLoanForBook(isbnQuijote));
+
+        // 3. Deshacer el último préstamo
+        String prestamoCancelado = library.undoLastBookLoan(isbnQuijote);
+        if (prestamoCancelado != null) {
+            System.out.println("Se deshizo el préstamo erróneo de: " + prestamoCancelado);
+        }
+        System.out.println("Estado de 'El Quijote' tras deshacer: "
+                + library.findBookByIsbn(isbnQuijote));
+
+        // Ahora sí lo prestamos al usuario correcto
+        library.lendBookToUser(isbnQuijote, "Lucía");
+        System.out.println("Nuevo último préstamo registrado: "
+                + library.getLastLoanForBook(isbnQuijote));
+
+
+
+
+
+
+                
     }
 }
